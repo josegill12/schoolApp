@@ -1,0 +1,114 @@
+h1 {
+  color: rgb(0, 0, 0);
+  border-radius: 0%;
+  width: auto;
+  object-fit: cover;
+  height: 5px;
+}
+
+/* .Mk-hero {
+    display: flex;
+    padding: 10%;
+    background-color: rgb(255, 115, 0);
+    text-align: right;
+  } */
+
+#nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: bisque;
+}
+
+.Home-Room {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  justify-content: center; /* Centers items vertically */
+  background-image: url("https://ballotpedia.s3.amazonaws.com/images/4/4e/Seal_of_Colorado.svg.png"); /* Provide the correct path to image */
+  background-size: cover; /* This will cover the entire viewport */
+  background-position: center; /* This will center the image */
+  background-repeat: no-repeat; /* This prevents the image from repeating */
+  height: 100vh; /*Makes the container take the full height of the viewport */
+}
+
+.addToSchoolListBtn,
+#submit {
+  background-color: #4caf50; /* A green color */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.addToSchoolListBtn:hover,
+#submit:hover {
+  background-color: #45a049;
+}
+
+.schoolName {
+  font-size: 24px;
+  color: #e91b1b;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.area {
+    
+  font-size: 24px;
+  margin-top: 20px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+body {
+  background-color: #ddd085d7;
+}
+
+.final {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers items horizontally */
+  font-size: 24px;
+  color: #e91b1b;
+  margin-top: 20px;
+}
+
+.areaTwo {
+  font-size: 24px;
+  margin-top: 20px;
+  opacity: 0; /* Start with element hidden */
+  animation: fadeIn 1s ease-in-out forwards; /* Apply the animation */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px); /* Optional: Add a slight upward movement */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.addToProfileBtn {
+  display: inline-block;
+  background-color: #4caf50; /* Green color for example */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.addToProfileBtn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}

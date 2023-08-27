@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+
+<body>
+
+    <h1>
+        <%= user.name %>'s Profile
+    </h1>
+    <p><strong>user</strong>
+        <%= user.name %>
+    </p>
+
+    <h2>Your Schools:</h2>
+    <ul>
+        <% user.schools.forEach(school=> { %>
+            <li>
+                <%= school.name %> - <%= school.address %> 
+            </li>
+            <% }) %>
+    </ul>
+
+    <h2>Add a School to Your Profile:</h2>
+    <form action="/users/add-school" method="POST">
+        <select name="schoolId">
+            <% schools.forEach(school=> { %>
+                <option value="<%= school.id %>">
+                    <%= school.name %>
+                </option>
+                <% }) %>
+        </select>
+        <button type="submit">Add School</button>
+    </form>
+
+</body>
+
+</html>

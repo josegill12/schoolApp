@@ -1,0 +1,22 @@
+<% grades.forEach(grade=> { %>
+    <div class="area">
+        <h2>
+            <%= grade.grade %> Grade Materials
+
+        </h2>
+        <ul class="areaTwo">
+            <% grade.materials.forEach(material=> { %>
+                <li>
+                    <%= material %>
+                </li>
+                <%})%>
+        </ul>
+        <%= grade.K %><br />
+            <%= grade.First %><br />
+                <%= grade.Second %><br />
+                    <%= grade.Third %><br />
+                        <%= grade.Fourth %><br />
+                            <%= grade.Fifth %><br />
+    </div>
+
+    <% }) %>

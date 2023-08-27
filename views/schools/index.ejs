@@ -1,0 +1,15 @@
+<% schools.forEach(school=> { %>
+    <h1 class="schoolName">
+        <%= school.name %>
+    </h1>
+    <p class="area">
+        <%= school.Address %><br />
+            <%= school.Hours %><br />
+                <%= school.Phone %><br />
+                    <%= school.District %><br />
+                        <%= school.Lowest_grade %><br />
+                            <%= school.Highest_grade %>
+    </p>
+    <a href="/school/grades/<%= school.id %>" class="addToSchoolListBtn">View Grades</a>
+    <a href="/user/addSchool/<%= school.id %>" class="addToProfileBtn">Add to Profile</a>
+    <% }) %>
