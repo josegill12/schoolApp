@@ -18,15 +18,15 @@
 
     <h2>Your Schools:</h2>
     <ul>
-        <% user.schools.forEach(school=> { %>
+        <% schools.forEach(school=> { %>
             <li>
-                <%= school.name %> - <%= school.address %> 
+                <%= school.name %> - <%= school.address %>
             </li>
             <% }) %>
     </ul>
 
     <h2>Add a School to Your Profile:</h2>
-    <form action="/users/add-school" method="POST">
+    <form action="auth/profile/add-school" method="POST">
         <select name="schoolId">
             <% schools.forEach(school=> { %>
                 <option value="<%= school.id %>">

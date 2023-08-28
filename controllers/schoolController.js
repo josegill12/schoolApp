@@ -11,9 +11,8 @@ router.get("/", async (req, res) => {
 router.get("seed", async (req, res) => {
   await Profile.deleteMany({});
   await School.deleteMany({});
-  let seededSchools = await School.create([
+  let schools = [
     {
-      id: 1,
       name: "Arrowhead Elementary School",
       Address: "19100 E Bates Ave, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",
@@ -23,7 +22,6 @@ router.get("seed", async (req, res) => {
       Highest_grade: "Fifth Grade",
     },
     {
-      id: 2,
       name: "Side Creek Elementary School",
       Address: "19191 E Iliff Ave, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",
@@ -33,7 +31,6 @@ router.get("seed", async (req, res) => {
       Highest_grade: "Fifth Grade",
     },
     {
-      id: 3,
       name: "Dalton Elementary School",
       Address: "17401 E Darhmouth Ave, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",
@@ -43,7 +40,6 @@ router.get("seed", async (req, res) => {
       Highest_grade: "Fifth Grade",
     },
     {
-      id: 4,
       name: "Dartmouth Elementary School",
       Address: "3050 S Laredo St, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",
@@ -53,7 +49,6 @@ router.get("seed", async (req, res) => {
       Highest_grade: "Fifth Grade",
     },
     {
-      id: 5,
       name: "Vassar",
       Address: "18101 E Vassar Pl, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",
@@ -62,7 +57,7 @@ router.get("seed", async (req, res) => {
       Lowest_grade: "Pre-kindergarten",
       Highest_grade: "Fifth Grade",
     },
-  ]);
+  ];
 });
 
 // View for grades
@@ -159,12 +154,20 @@ router.get("/grades/:id", async (req, res) => {
 // POST route to add a new school
 router.post("/add-school", async (req, res) => {
   const schoolId = parseInt(req.body.schoolId, 10);
-  const schoolToAdd = schools.find((school) => school.id === schoolId);
+  const schoolName = req.body.schoolName;
 
-  if (!schoolToAdd) {
-    return res.status(404).send("School not found");
+  const schoolToAdd = {
+    id: schoolId,
+    name: schoolName,
+  };
+
+  // Check if school with that ID already exists
+  const existingSchool = schools.find((school) => school.id === schoolId);
+  if (existingSchool) {
+    return res.status(400).send("School with that ID already exists");
   }
 
+  schools.push(schoolToAdd);
   res.redirect("/");
 });
 
