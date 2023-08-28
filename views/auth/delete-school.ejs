@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete School</title>
+</head>
+
+<body>
+    <h1>
+        Delete School from <%= user.name %>'s Profile
+    </h1>
+
+    <h2>Your Schools:</h2>
+    <ul>
+        <% schools.forEach(school=> { %>
+            <li>
+                <%= school.name %> - <%= school.address %>
+                        <form action="/auth/profile/delete-school" method="POST" style="display:inline;">
+                            <input type="hidden" name="schoolId" value="<%= school.id %>">
+                            <button type="submit">Delete</button>
+                        </form>
+            </li>
+            <% }) %>
+    </ul>
+</body>
+
+</html>

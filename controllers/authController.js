@@ -146,6 +146,56 @@ router.post("/profile/delete-item", async (req, res) => {
   }
 });
 
+let user = {
+  name: "",
+  schools: [
+    { name: "", address: "" },
+    { name: "", address: "Address 2" },
+  ],
+};
+
+let schools = [
+  { id: 3, name: "School 3", address: "Address 3" },
+  { id: 4, name: "School 4", address: "Address 4" },
+];
+
+exports.getProfile = (req, res) => {
+  res.render("profile", { user, schools });
+};
+
+exports.addSchool = (req, res) => {
+  const schoolId = parseInt(req.body.schoolId, 10);
+  const school = schools.find((s) => s.id === schoolId);
+
+  if (school) {
+    user.schools.push(school);
+    schools = schools.filter((s) => s.id !== schoolId);
+  }
+
+  res.redirect("/auth/profile");
+};
+
+exports.deleteSchool = (req, res) => {
+  const schoolId = parseInt(req.body.schoolId, 10);
+  const schoolIndex = user.schools.findIndex((s) => s.id === schoolId);
+
+  if (schoolIndex > -1) {
+    schools.push(user.schools[schoolIndex]);
+    user.schools.splice(schoolIndex, 1);
+  }
+
+  res.redirect("/auth/profile");
+};
+
+exports.editProfile = (req, res) => {
+  const newName = req.body.username;
+  if (newName) {
+    user.name = newName;
+  }
+
+  res.redirect("/auth/profile");
+};
+
 router.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/");

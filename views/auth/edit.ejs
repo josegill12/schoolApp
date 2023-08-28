@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User Profile</title>
+</head>
+
+<body>
+    <h1>
+        Edit <%= user.name %>'s Profile
+    </h1>
+
+    <h2>Edit Your Profile:</h2>
+    <form action="/auth/profile/edit" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%= user.name %>">
+        <button type="submit">Update Profile</button>
+    </form>
+</body>
+
+</html>

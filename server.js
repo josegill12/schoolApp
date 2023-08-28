@@ -27,7 +27,18 @@ app.use(authRoutes);
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
-
+app.get("/auth/profile", (req, res) => {
+  res.redirect("profile");
+});
+app.post("/auth/profile/add-school", (req, res) => {
+  res.redirect("add-school.ejs");
+});
+app.post("/auth/profile/delete-school", (req, res) => {
+  res.redirect("delete-school.ejs");
+});
+app.post("/auth/profile/edit", (req, res) => {
+  res.redirect("edit");
+});
 // define our own middle to check for loggin user
 // if no user go to login screen
 app.use((req, res, next) => {

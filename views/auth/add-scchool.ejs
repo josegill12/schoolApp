@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Add School</title>
+</head>
+
+<body>
+    <h1>
+        Add School to <%= user.name %>'s Profile
+    </h1>
+
+    <h2>Add a School:</h2>
+    <form action="/auth/profile/add-school" method="POST">
+        <select name="schoolId">
+            <% schools.forEach(school=> { %>
+                <option value="<%= school.id %>">
+                    <%= school.name %>
+                </option>
+                <% }) %>
+        </select>
+        <button type="submit">Add School</button>
+    </form>
+</body>
+
+</html>
