@@ -126,7 +126,7 @@ router.get("/profile", async (req, res) => {
 router.post("/profile/delete-item", async (req, res) => {
   console.log("Delete item from route hit");
   if (!req.session.userId) {
-    return res.redirect("/login");
+    return res.redirect("/profile");
   }
 
   try {
@@ -149,21 +149,21 @@ router.post("/profile/delete-item", async (req, res) => {
 let user = {
   name: "",
   schools: [
-    { name: "", address: "" },
-    { name: "", address: "Address 2" },
+    { name: [], address: [] },
+    { name: [], address: [] },
   ],
 };
 
 let schools = [
-  { id: 3, name: "School 3", address: "Address 3" },
-  { id: 4, name: "School 4", address: "Address 4" },
+  { id: 3, name: [], address: [] },
+  { id: 4, name: [], address: [] },
 ];
 
 exports.getProfile = (req, res) => {
   res.render("profile", { user, schools });
 };
 
-exports.addSchool = (req, res) => {
+exports.addschool = (req, res) => {
   const schoolId = parseInt(req.body.schoolId, 10);
   const school = schools.find((s) => s.id === schoolId);
 

@@ -6,6 +6,8 @@ const expressEjsLayouts = require("express-ejs-layouts");
 const authRoutes = require("./controllers/authController");
 const session = require("express-session");
 const schoolRouter = require("./controllers/schoolController");
+const morgan = require("morgan");
+const path = require("path");
 
 app.set("view engine", "ejs");
 //middlewares
@@ -21,6 +23,8 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(morgan("dev"));
+
 // anywhere below middleware
 app.use(authRoutes);
 
@@ -33,11 +37,18 @@ app.get("/auth/profile", (req, res) => {
 app.post("/auth/profile/add-school", (req, res) => {
   res.redirect("add-school.ejs");
 });
-app.post("/auth/profile/delete-school", (req, res) => {
-  res.redirect("delete-school.ejs");
+app.post("/auth/profile/delete-school.ejs", (req, res) => {
+  res.redirect("profile");
 });
-app.post("/auth/profile/edit", (req, res) => {
-  res.redirect("edit");
+app.post("/auth/profile/edit", function (req, res) {
+  const { name } = req.query;
+
+  if (!name) {
+    return res.status(400).send("Name parameter is missing");
+  }
+
+  const sanitized = name.replace(/-/g, "");
+  res.redirect("/profile/" + sanitized);
 });
 // define our own middle to check for loggin user
 // if no user go to login screen
