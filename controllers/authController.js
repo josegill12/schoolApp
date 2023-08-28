@@ -124,6 +124,7 @@ router.get("/profile", async (req, res) => {
 });
 
 router.post("/profile/delete-item", async (req, res) => {
+  console.log("Delete item from route hit");
   if (!req.session.userId) {
     return res.redirect("/login");
   }

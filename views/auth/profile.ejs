@@ -16,11 +16,22 @@
         <%= user.name %>
     </p>
 
+    <h2>Edit Your Profile:</h2>
+    <form action="/auth/profile/edit" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%= user.name %>">
+        <button type="submit">Update Profile</button>
+    </form>
+
     <h2>Your Schools:</h2>
     <ul>
         <% schools.forEach(school=> { %>
             <li>
                 <%= school.name %> - <%= school.address %>
+                        <form action="/auth/profile/delete-school" method="POST" style="display:inline;">
+                            <input type="hidden" name="schoolId" value="<%= school.id %>">
+                            <button type="submit">Delete</button>
+                        </form>
             </li>
             <% }) %>
     </ul>
