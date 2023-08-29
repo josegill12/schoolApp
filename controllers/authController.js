@@ -124,7 +124,7 @@ router.get("/profile", async (req, res) => {
 });
 
 router.post("/profile/delete-school", async (req, res) => {
-  console.log("Delete school from route hit");
+  console.log("Delete school route hit");
   if (!req.session.userId) {
     return res.redirect("/profile");
   }
@@ -132,16 +132,21 @@ router.post("/profile/delete-school", async (req, res) => {
   try {
     const user = await User.findById(req.session.userId);
     if (!user) {
-      return res.redirect("/login"); // Made this path absolute
+      return res.redirect("/login");
     }
-    const schoolIndex = user.school.indexOf(req.body.schoolId);
+
+    const schoolIndex = user.schools.findIndex(
+      (school) => school.id === parseInt(req.body.schoolId, 10)
+    );
     if (schoolIndex > -1) {
-      user.items.splice(itemIndex, 1);
+      schools.push(user.schools[schoolIndex]);
+      user.schools.splice(schoolIndex, 1);
     }
+
     await user.save();
-    res.redirect("/profile");
+    res.redirect("/auth/profile");
   } catch (error) {
-    console.error("Error deleting item:", error);
+    console.error("Error deleting school:", error);
     res.status(500).send("Server Error");
   }
 });

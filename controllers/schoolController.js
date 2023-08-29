@@ -13,6 +13,7 @@ router.get("seed", async (req, res) => {
   await School.deleteMany({});
   let schools = [
     {
+      id: 1,
       name: "Arrowhead Elementary School",
       Address: "19100 E Bates Ave, Aurora, CO 80013",
       Hours: "Closed-Opens 7:45 AM Thu",

@@ -3,7 +3,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb+srv://josegill1988:Popoff12@cluster0.vhrerpo.mongodb.net/labs"
+  "mongodb+srv://josegill1988:Popoff12@cluster0.vhrerpo.mongodb.net/SchoolApp"
 );
 
 mongoose.connection.on("connected", () => console.log("Neo were conneccted"));
