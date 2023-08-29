@@ -123,8 +123,8 @@ router.get("/profile", async (req, res) => {
   }
 });
 
-router.post("/profile/delete-item", async (req, res) => {
-  console.log("Delete item from route hit");
+router.post("/profile/delete-school", async (req, res) => {
+  console.log("Delete school from route hit");
   if (!req.session.userId) {
     return res.redirect("/profile");
   }
@@ -134,8 +134,8 @@ router.post("/profile/delete-item", async (req, res) => {
     if (!user) {
       return res.redirect("/login"); // Made this path absolute
     }
-    const itemIndex = user.items.indexOf(req.body.itemName);
-    if (itemIndex > -1) {
+    const schoolIndex = user.school.indexOf(req.body.schoolId);
+    if (schoolIndex > -1) {
       user.items.splice(itemIndex, 1);
     }
     await user.save();

@@ -1,0 +1,28 @@
+const express = require("express");
+const router = express.Router();
+
+// Handle deleting a school
+router.post("/delete-school", async (req, res) => {
+  const schoolIdToDelete = req.body.schoolId;
+
+  try {
+    const user = await User.findById(req.session.userId);
+
+    if (user) {
+      user.schools = user.schools.filter(
+        (school) => school.id !== schoolIdToDelete
+      );
+
+      await user.save();
+
+      res.redirect("/auth/profile");
+    } else {
+      res.redirect("/login");
+    }
+  } catch (error) {
+    console.error("Error deleting school:", error);
+    res.status(500).send("Server Error");
+  }
+});
+
+module.exports = router;

@@ -137,7 +137,7 @@ let school = [];
 
 router.get("/", async (req, res) => {
   const user = {};
-  res.render("profiles/profile.ejs", { user, schools });
+  res.render("profiles", { user, schools });
 });
 // GET route to show grades for a specific school
 router.get("/grades/:id", async (req, res) => {
